@@ -25,10 +25,10 @@ export type Options = {
 
 const rule: Rule.RuleModule = {
   meta: {
-    type: 'suggestion',
+    type: 'problem',
     docs: {
       category: 'Style guide',
-      description: 'Enforce a convention in module import order.',
+      description: 'Enforce a convention in module import order',
     },
     fixable: 'code',
     schema: [
