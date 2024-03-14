@@ -73,10 +73,8 @@ const rule: Rule.RuleModule = {
         }
       },
       ['Program:exit']() {
-        const violations = generateReport(importMap, options)
-        for (const violation of violations) {
-          context.report(violation)
-        }
+        generateReport(importMap, options)
+          .forEach((descriptor) => context.report(descriptor))
       }
     }
   }
