@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "module": "ESNext",
+    "moduleResolution": "NodeNext"
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "NodeNext"
+    }
+  }
+}

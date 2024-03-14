@@ -1,0 +1,60 @@
+{
+  "name": "@nolawnchairs/eslint-rule-import-order",
+  "version": "0.1.0",
+  "description": "ESLint rule to enforce a consistent import order",
+  "main": "lib/index.js",
+  "keywords": [],
+  "author": "Michael Wieczorek <nolawnchairs@gmail.com>",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "test",
+    "testRegex": ".*\\.spec\\.[jt]s$",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.ts"
+    ],
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.44.2",
+    "@types/estree": "^1.0.1",
+    "@types/is-core-module": "^2.2.2",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.5.4",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@typescript-eslint/rule-tester": "^7.2.0",
+    "@typescript-eslint/utils": "^7.2.0",
+    "endent": "^2.1.0",
+    "eslint": "^8.47.0",
+    "jest": "^29.5.0",
+    "rimraf": "^5.0.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": ">= 7.0.0",
+    "@typescript-eslint/parser": ">= 7.0.0",
+    "eslint": ">= 8.0.0"
+  },
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "eslint --ext .ts . --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "is-core-module": "^2.13.1",
+    "minimatch": "^9.0.3"
+  }
+}
