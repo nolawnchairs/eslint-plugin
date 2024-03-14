@@ -68,7 +68,7 @@ export function createIdealOrderMap(declaredImports: ImportMap, options: Options
   const grouped = groupImports(declaredImports, options)
   let i = 0
   for (const importType of groupOrder) {
-    const imports = grouped.get(importType)?.toSorted(getSortFunction(importType)) ?? []
+    const imports = grouped.get(importType)?.slice().sort(getSortFunction(importType)) ?? []
     for (const imp of imports) {
       if (!map.has(imp.node)) {
         map.set(imp.node, [])
