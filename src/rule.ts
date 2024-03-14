@@ -1,7 +1,7 @@
 import { Rule } from 'eslint'
 import {
   type ImportMap,
-  getViolations,
+  generateReport,
 } from './core'
 
 export type Options = {
@@ -73,7 +73,7 @@ const rule: Rule.RuleModule = {
         }
       },
       ['Program:exit']() {
-        const violations = getViolations(importMap, options)
+        const violations = generateReport(importMap, options)
         for (const violation of violations) {
           context.report(violation)
         }

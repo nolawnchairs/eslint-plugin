@@ -30,11 +30,6 @@ type Import = {
 
 type GroupedImports = Map<ImportType, Import[]>
 type ImportStrategy = 'default' | 'named' | 'namespace' | 'mixed'
-type Violation = {
-  node: ImportNode
-  message: string
-  fix: (fixer: Rule.RuleFixer) => Rule.Fix
-}
 
 const groupOrder: ImportType[] = [
   'core',
@@ -104,15 +99,15 @@ export function groupImports(declaredImports: ImportMap, options: Options): Grou
 }
 
 /**
- * Compute violations based on the declared and ideal order
+ * Compute violations to be reported
  *
  * @export
  * @param {ImportMap} declared
  * @param {Options} options
- * @return {*}  {Violation[]}
+ * @return {*}  {Rule.ReportDescriptor[]}
  */
-export function getViolations(declared: ImportMap, options: Options): Violation[] {
-  const violations = Array<Violation>()
+export function generateReport(declared: ImportMap, options: Options): Rule.ReportDescriptor[] {
+  const violations = Array<Rule.ReportDescriptor>()
   const declaredOrder = getMapValues(declared)
   const idealOrder = getMapValues(createIdealOrderMap(declared, options))
   for (const declared of declaredOrder.values()) {
