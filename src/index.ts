@@ -1,5 +1,5 @@
-import rule from './rule'
+import importOrder from './import-order/rule'
 
 export default {
-  'import-order': rule,
+  'import-order': importOrder,
 }
