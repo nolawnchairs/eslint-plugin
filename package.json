@@ -1,5 +1,5 @@
 {
-  "name": "@nolawnchairs/eslint-rule-import-order",
+  "name": "@nolawnchairs/eslint-plugin",
   "version": "0.1.0",
   "description": "ESLint rule to enforce a consistent import order",
   "main": "lib/index.js",
