@@ -41,3 +41,4 @@ module.exports = {
 ## Rules
 
 * [import-order](./src/rules/import-order/README.md) - Enforces a standardized, opinionated order for import statements.
+* [prefer-aliased](./src/rules/prefer-aliased/README.md) - Enforce internal application imports to be aliased with a token instead of relative paths. Only recommended for applications and not libraries.

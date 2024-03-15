@@ -90,7 +90,9 @@ The rule can be configured with the following options:
 
 ### Notes on module aliasing and anti-patterns
 
-The `internalAliasPattern` setting assumes a single alias pattern to refer to your source root, e.g. `@app/**/*` or `@lib/**/*`. If you've configured the `paths` setting in your `tsconfig.json` to have multiple aliases referencing different directories relative to your project root, you'll need to condense them into a single pattern to use this rule properly. For example:
+Module aliasing is recommended for application code, as it keeps your import list clean and easy to read. However, it's important to use module aliasing judiciously, as it can lead to anti-patterns and make your codebase difficult to maintain.
+
+The `internalAliasPattern` setting assumes a single alias pattern to refer to your source root, such as `@app/**/*`. If you've configured the `paths` setting in your `tsconfig.json` to have multiple aliases referencing different directories relative to your project root, you'll need to condense them into a single pattern to use this rule properly. For example:
 
 Given the following structure:
 
@@ -109,7 +111,7 @@ Given the following structure:
 └── package.json
 ```
 
-Using multiple path aliases in `tsconfig.json`:
+Using multiple path aliases in `tsconfig.json`, whilst valid, does not play well with this rule. Thus, the following configuration:
 
 ```json
 {
@@ -123,7 +125,7 @@ Using multiple path aliases in `tsconfig.json`:
   }
 }
 ```
-Can be changed to a single path alias, `@app/**/*`:
+Can be changed to a single path alias, `@app/**/*` by prefixing:
 
 ```json
 {
@@ -137,7 +139,9 @@ Can be changed to a single path alias, `@app/**/*`:
   }
 }
 ```
-However, this can be difficult to maintain, so it's recommended to use a single alias pattern if possible. The simple solution would be to use the simple at-slash pattern that points to whatever project directory functions as source-root, e.g. `@/*`:
+However, this can be difficult to maintain. If your project requires multiple directories to host application code (or if a refactor is impractical), it's recommended to use a single alias pattern of `@/*` that points to your project root. This will allow any file in your project to be aliased with a single token.
+
+Set the `internalAliasPattern` to `@/**/*`, and set your paths config as follows:
 
 ```json
 {
@@ -150,7 +154,11 @@ However, this can be difficult to maintain, so it's recommended to use a single 
 }
 ```
 
-We recommend having all files in your project to live under the same directory, such as `src`, and using a single alias pattern, e.g. `@app/**/*`. This will make it easier to maintain and understand your project's structure:
+## Recommended configuration
+
+We recommend having all files in your project to live under the same directory, such as `src`, and using a single alias pattern.
+
+Set the `internalAliasPattern` to `@app/**/*`, and set your paths config as follows:
   
 ```json
 {
