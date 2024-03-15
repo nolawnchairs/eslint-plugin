@@ -85,14 +85,14 @@ export function createIdealOrderMap(declaredImports: ImportMap, options: Options
  */
 export function groupImports(declaredImports: ImportMap, options: Options): GroupedImports {
   const grouped: GroupedImports = new Map()
-  for (const [_, imports] of declaredImports) {
-    for (const imp of imports) {
-      const type = deriveType(imp.moduleName, options)
+  for (const imports of declaredImports.values()) {
+    for (const i of imports) {
+      const type = deriveType(i.moduleName, options)
       if (!grouped.has(type)) {
         grouped.set(type, [])
       }
       const group = grouped.get(type)!
-      group.push(imp)
+      group.push(i)
     }
   }
   return grouped
@@ -133,7 +133,7 @@ export function generateReport(declared: ImportMap, options: Options): Rule.Repo
  * @export
  * @param {Import} declared
  * @param {Import[]} idealList
- * @return {*} 
+ * @throws {Error} If the ideal list does not contain the declared module
  */
 export function findIdealRank(declared: Import, idealList: Import[]) {
   const match = idealList.findIndex((imp) => imp.moduleName === declared.moduleName)
@@ -177,7 +177,8 @@ function getSortFunction(type: ImportType): (a: Import, b: Import) => number {
     }
 
     if (!a.moduleName.includes('/') && !b.moduleName.includes('/')) {
-      return a.moduleName.localeCompare(b.moduleName)
+      return a.moduleName.toLowerCase()
+        .localeCompare(b.moduleName.toLowerCase())
     }
 
     if (~['parent', 'sibling', 'index'].indexOf(type)) {
