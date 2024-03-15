@@ -96,8 +96,8 @@ const rule: Rule.RuleModule = {
       },
     ],
   },
-  create: (context) => {
-    const options: Options = context.options?.[0] ?? {}
+  create(context) {
+    const [options = {}] = context.options as [Options]
     return {
       ImportDeclaration(node) {
         const declared = String(node.source.value)
