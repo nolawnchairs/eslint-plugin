@@ -54,10 +54,12 @@ export function findMatchingAlias(sourcePath: string, currentFile: string, optio
   const { alias = defaultAlias } = options ?? {}
   const dir = dirname(currentFile)
   for (const [token, aliasRoot] of Object.entries(alias)) {
-    const normal = normalize(aliasRoot)
-    if (~dir.split('/').indexOf(normal)) {
-      const rootPath = isAbsolute(aliasRoot) ? aliasRoot : resolve(normal)
+    const normalized = normalize(aliasRoot)
+    if (~dir.split('/').indexOf(normalized)) {
       const absoluteSourcePath = resolve(dir, sourcePath)
+      const rootPath = isAbsolute(aliasRoot)
+        ? aliasRoot
+        : resolve(normalized)
       return {
         token,
         rootPath,
@@ -94,19 +96,19 @@ const rule: Rule.RuleModule = {
     const options: Options = context.options?.[0] ?? {}
     return {
       ImportDeclaration(node: ImportDeclaration & Rule.NodeParentExtension) {
-        const source = String(node.source.value)
-        if (isValidPath(context.filename) && isRelativeImport(source)) {
-          const match = findMatchingAlias(source, context.filename, options)
-          if (match) {
+        const declared = String(node.source.value)
+        if (isValidPath(context.filename) && isRelativeImport(declared)) {
+          const alias = findMatchingAlias(declared, context.filename, options)
+          if (alias) {
             context.report({
               node,
-              message: `Use aliased import "${match.path}" instead of relative "${source}"`,
-              fix: (fixer) => fixer.replaceText(node.source, `'${match.path}'`),
+              message: `Use aliased import "${alias.path}" instead of relative "${declared}"`,
+              fix: (fixer) => fixer.replaceText(node.source, `'${alias.path}'`),
             })
           } else {
             context.report({
               node,
-              message: `No alias defined for path "${source}"`,
+              message: `No alias defined for path "${declared}"`,
             })
           }
         }
