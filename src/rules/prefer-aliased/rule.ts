@@ -92,10 +92,10 @@ const rule: Rule.RuleModule = {
       },
     ],
   },
-  create: (context: Rule.RuleContext) => {
+  create: (context) => {
     const options: Options = context.options?.[0] ?? {}
     return {
-      ImportDeclaration(node: ImportDeclaration & Rule.NodeParentExtension) {
+      ImportDeclaration(node) {
         const declared = String(node.source.value)
         if (isValidPath(context.filename) && isRelativeImport(declared)) {
           const alias = findMatchingAlias(declared, context.filename, options)

@@ -46,7 +46,7 @@ const rule: Rule.RuleModule = {
       },
     ],
   },
-  create(context: Rule.RuleContext) {
+  create(context) {
     const sourceCode = context.sourceCode
     const options: Options = context.options?.[0] ?? {}
     const importMap: ImportMap = new Map()
