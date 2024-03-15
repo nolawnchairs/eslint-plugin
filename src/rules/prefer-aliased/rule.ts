@@ -54,8 +54,8 @@ export function isValidPath(path: string): boolean {
  * @param {Options} [options]
  * @return {*}  {(Alias | undefined)}
  */
-export function findMatchingAlias(sourcePath: string, currentFile: string, options?: Options): Alias | undefined {
-  const { alias = defaultAlias } = options ?? {}
+export function findMatchingAlias(sourcePath: string, currentFile: string, options: Options): Alias | undefined {
+  const { alias = defaultAlias } = options
   const dir = dirname(currentFile)
   for (const [token, aliasRoot] of Object.entries(alias)) {
     const normalized = normalize(aliasRoot)
