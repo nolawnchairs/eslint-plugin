@@ -1,5 +1,5 @@
 
-# nolawnchairs/import-order
+# @nolawnchairs/import-order
 
 This rule enforces a consistent and opinionated order for import statements in TypeScript or JavaScript modules. It was created to address some of the shortcomings of the `import/order` rule.
 
@@ -48,8 +48,9 @@ The rule will group each import into one of these categories, and then enforce a
   8. `index`
   9. `unknown`
 
-Within each group, the rule will enforce a consistent order based on decreasing path depth, and alphabetic order. For example, the following imports:
+Within each group, the rule will enforce a consistent order based on decreasing path depth, and alphabetic order. 
 
+### 👎 Invalid
 ```ts
 import { Injectable } from '@nestjs/common'
 import { join } from 'path'
@@ -63,8 +64,7 @@ import { HttpService } from '@nestjs/axios'
 import { MyService4 } from '../my-service'
 ```
 
-The rule will enforce the following order:
-
+### 👍 Valid
 ```ts
 import fs from 'fs'
 import { join } from 'path'

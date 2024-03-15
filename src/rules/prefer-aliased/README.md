@@ -1,12 +1,11 @@
 
-# nolawnchairs/prefer-aliased
+# @nolawnchairs/prefer-aliased
 
 Enforce internal application imports to be aliased with a token instead of relative paths.
 
 
 ### 👎 Invalid
 ```ts
-/* eslint prefer-aliased "error" */
 import { foo } from '../foo'
 import { bar } from './bar'
 import { baz } from './bar/baz'
@@ -14,7 +13,6 @@ import { baz } from './bar/baz'
 
 ### 👍 Valid
 ```ts
-/* eslint prefer-aliased "error" */
 import { foo } from '@app/foo'
 import { bar } from '@app/bar'
 import { baz } from '@app/bar/baz'
