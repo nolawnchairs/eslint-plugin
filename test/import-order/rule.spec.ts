@@ -1,6 +1,6 @@
 import endent from 'endent'
 import { RuleTester } from 'eslint'
-import rule from '../../src/import-order/rule'
+import rule from '../../src/rules/import-order/rule'
 
 const ruleTester = new RuleTester({
   parserOptions: {

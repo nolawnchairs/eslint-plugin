@@ -9,7 +9,7 @@ import {
   isScopedModule,
   isSiblingModule,
   isIndexModule,
-} from '../../src/import-order/util'
+} from '../../src/rules/import-order/util'
 
 describe('Utility Functions', () => {
 
