@@ -1,6 +1,10 @@
 
-import { resolve, dirname, isAbsolute, normalize } from 'path'
-import { ImportDeclaration } from 'estree'
+import {
+  resolve,
+  dirname,
+  isAbsolute,
+  normalize
+} from 'path'
 import { Rule } from 'eslint'
 
 type Options = {
