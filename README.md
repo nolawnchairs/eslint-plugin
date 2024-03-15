@@ -92,7 +92,7 @@ This is an opinionated rule that enforces a standardized order for import statem
 | `scoped` | Imports from scoped packages | `@nestjs/common`, `@nestjs/core` |
 | `aliased` | Internal modules aliased by the user | `@app/my-service`, `@lib/my-service`, `@utils/strings` |
 | `internal` | Internal modules not aliased by the user | `src/my-service`, `src/util/strings` |
-| `parent` | Parent modules | `../`, `../../` |
+| `parent` | Parent modules | `../my-service`, `../../my-service` |
 | `sibling` | Sibling modules | `./my-service`, `./util/strings` |
 | `index` | Index modules | `./index` |
 | `unknown` | Modules whose provenance cannot be discerned |  |
