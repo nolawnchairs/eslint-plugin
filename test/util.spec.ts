@@ -14,11 +14,17 @@ import {
 describe('Utility Functions', () => {
 
   it('should identify user-declared scoped modules', () => {
-    const options = { internalAliasPattern: '@app/**/*' }
-    expect(isDeclaredInternalAliasedModule('@app/my-module', options)).toBe(true)
-    expect(isDeclaredInternalAliasedModule('@app/my-module/submodule', options)).toBe(true)
-    expect(isDeclaredInternalAliasedModule('@nestjs/common', options)).toBe(false)
-    expect(isDeclaredInternalAliasedModule('axios', options)).toBe(false)
+    const options1 = { internalAliasPattern: '@app/**/*' }
+    expect(isDeclaredInternalAliasedModule('@app/my-module', options1)).toBe(true)
+    expect(isDeclaredInternalAliasedModule('@app/my-module/submodule', options1)).toBe(true)
+    expect(isDeclaredInternalAliasedModule('@nestjs/common', options1)).toBe(false)
+    expect(isDeclaredInternalAliasedModule('axios', options1)).toBe(false)
+    const options2 = { internalAliasPattern: '@/**/*' }
+    expect(isDeclaredInternalAliasedModule('@/components/some-component', options2)).toBe(true)
+    expect(isDeclaredInternalAliasedModule('@/components/some-component/sub-component', options2)).toBe(true)
+    expect(isDeclaredInternalAliasedModule('@/src/index', options2)).toBe(true)
+    expect(isDeclaredInternalAliasedModule('@app/my-module', options2)).toBe(false)
+    expect(isDeclaredInternalAliasedModule('@app/my-module/submodule', options2)).toBe(false)
   })
 
   it('should identify user-declared internal modules', () => {
@@ -102,7 +108,8 @@ describe('Utility Functions', () => {
     expect(deriveType('src/my-module', options)).toBe('internal')
     expect(deriveType('src/my-module/submodule', options)).toBe('internal')
     expect(deriveType('@app/my-module', options)).toBe('aliased')
-    expect(deriveType('@app/my-module/submodule', options)).toBe('aliased')
+    expect(deriveType('@app/my-module', options)).toBe('aliased')
+    expect(deriveType('@/my-module/submodule', { internalAliasPattern: '@/**/*' })).toBe('aliased')
     expect(deriveType('./my-module', options)).toBe('sibling')
     expect(deriveType('../my-module', options)).toBe('parent')
     expect(deriveType('../../my-module', options)).toBe('parent')
