@@ -5,9 +5,11 @@
   "main": "lib/index.js",
   "keywords": [],
   "author": "Michael Wieczorek <nolawnchairs@gmail.com>",
-  "license": "ISC",
-  "publishConfig": {
-    "access": "public"
+  "license": "MIT",
+  "homepage": "https://gihub.com/nolawnchairs/eslint-plugin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nolawnchairs/eslint-plugin.git"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -25,6 +27,24 @@
     ],
     "testEnvironment": "node"
   },
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "eslint --ext .ts . --fix",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "is-core-module": "^2.13.1",
+    "minimatch": "^9.0.3"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": ">= 7.0.0",
+    "@typescript-eslint/parser": ">= 7.0.0",
+    "eslint": ">= 8.0.0"
+  },
   "devDependencies": {
     "@types/eslint": "^8.44.2",
     "@types/estree": "^1.0.1",
@@ -41,20 +61,5 @@
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
-  },
-  "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": ">= 7.0.0",
-    "@typescript-eslint/parser": ">= 7.0.0",
-    "eslint": ">= 8.0.0"
-  },
-  "scripts": {
-    "build": "rimraf lib && tsc",
-    "lint": "eslint --ext .ts .",
-    "lint:fix": "eslint --ext .ts . --fix",
-    "test": "jest"
-  },
-  "dependencies": {
-    "is-core-module": "^2.13.1",
-    "minimatch": "^9.0.3"
   }
 }
