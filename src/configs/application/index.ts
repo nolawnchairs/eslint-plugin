@@ -12,5 +12,10 @@ export const application = {
     '@nolawnchairs/import-order': ['error', {
       internalAliasPattern: '@lib/**/*',
     }],
+    '@nolawnchairs/prefer-aliased': ['error', {
+      alias: {
+        '@lib': 'src',
+      }
+    }],
   },
 }
