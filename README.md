@@ -39,12 +39,13 @@ npm install @nolawnchairs/eslint-rule-import-order
 Then require the rule in your plugin's configuration as you would any other ESLint rule you're adding. Since this rule is standalone and not part of a plugin, you'll need to add it to your plugin's configuration manually:
 
 ```js
-const importOrder = require('@nolawnchairs/eslint-rule-import-order')
-module.exports = {
+const myPlugin = {
   rules: {
-    'nolawnchairs/import-order': ['error', { internalAliasPattern: '@app/**/*' }],
+    'import-order': require('@nolawnchairs/eslint-rule-import-order'),
   },
 }
+
+module.exports = myPlugin
 ```
 The rule will then be a part of your plugin, and will be prefixed with your plugin's name when used in a project's `.eslintrc.js` file.
 
@@ -69,9 +70,10 @@ module.exports = {
 If you just wish to use this rule in your project without adding it to a plugin, you can add it to your project's `.eslintrc.js` file manually:
 
 ```js
+const importOrder = require('@nolawnchairs/eslint-rule-import-order')
 module.exports = {
   rules: {
-    'import-order': require('@nolawnchairs/eslint-rule-import-order'),
+    'nolawnchairs/import-order': ['error', { internalAliasPattern: '@app/**/*' }],
   },
 }
 ```
