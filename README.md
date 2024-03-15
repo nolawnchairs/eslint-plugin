@@ -34,10 +34,10 @@ module.exports = {
 
 ### Configs
 
-* [application](./src/application/README.md) - ESLint configuration designed for applications.
-* [library](./src/library/README.md) - ESLint configuration designed for libraries.
+* [application](./src/configs/application/README.md) - ESLint configuration designed for applications.
+* [library](./src/configs/library/README.md) - ESLint configuration designed for libraries.
 
 
 ## Rules
 
-* [import-order](./src/import-order/README.md) - Enforces a standardized, opinionated order for import statements.
+* [import-order](./src/rules/import-order/README.md) - Enforces a standardized, opinionated order for import statements.
