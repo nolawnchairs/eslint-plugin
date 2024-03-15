@@ -14,9 +14,13 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
     'import',
+    'local',
     'unused-imports',
   ],
-  rules,
+  rules: {
+    ...rules,
+    'local/import-order': 'error',
+  },
   overrides: [
     {
       files: ['src/**/*.ts'],

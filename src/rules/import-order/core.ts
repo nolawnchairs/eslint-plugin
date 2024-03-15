@@ -1,7 +1,7 @@
 import { AST, Rule } from 'eslint'
 import { ImportDeclaration } from 'estree'
-import { deriveType } from './util'
 import { Options } from './rule'
+import { deriveType } from './util'
 
 export const IMPORT_TYPES = [
   'core', // Node.js core modules

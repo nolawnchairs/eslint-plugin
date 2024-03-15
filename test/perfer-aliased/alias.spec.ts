@@ -1,5 +1,9 @@
 
-import { findMatchingAlias, isRelativeImport, isValidPath } from '../../src/rules/prefer-aliased/rule'
+import {
+  findMatchingAlias,
+  isRelativeImport,
+  isValidPath,
+} from '../../src/rules/prefer-aliased/rule'
 
 describe('find-matching-alias', () => {
 
