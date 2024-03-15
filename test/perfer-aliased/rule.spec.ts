@@ -55,10 +55,10 @@ ruleTester.run('prefer-aliased', rule, {
       filename: filenameInSrcRoot,
       name: 'import from relative path',
       code: 'import { Foo } from "./foo";',
-      output: 'import { Foo } from \'@app/foo\';',
+      output: `import { Foo } from '@app/foo';`,
       errors: [
         {
-          message: 'Use aliased import "@app/foo" instead of relative import',
+          message: 'Use aliased import "@app/foo" instead of relative "./foo"',
         },
       ],
     },

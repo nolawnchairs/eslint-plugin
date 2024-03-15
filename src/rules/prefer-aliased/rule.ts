@@ -100,7 +100,7 @@ const rule: Rule.RuleModule = {
           if (match) {
             context.report({
               node,
-              message: `Use aliased import "${match.path}" instead of relative import`,
+              message: `Use aliased import "${match.path}" instead of relative "${source}"`,
               fix: (fixer) => fixer.replaceText(node.source, `'${match.path}'`),
             })
           } else {
