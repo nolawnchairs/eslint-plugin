@@ -1,14 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
     "module": "ESNext",
     "moduleResolution": "NodeNext"
   },
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    ".eslintrc.js"
   ],
-  "exclude": [],
   "ts-node": {
     "compilerOptions": {
       "module": "NodeNext"
