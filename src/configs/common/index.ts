@@ -75,7 +75,7 @@ export default {
       args: 'after-used',
       argsIgnorePattern: '^_',
       ignoreRestSiblings: true,
-    }
+    },
   ],
 
   // Import

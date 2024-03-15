@@ -5,7 +5,8 @@
     "moduleResolution": "NodeNext"
   },
   "include": [
-    "**/*.ts",
+    "src/**/*.ts",
+    "test/**/*.ts",
     ".eslintrc.js"
   ],
   "ts-node": {

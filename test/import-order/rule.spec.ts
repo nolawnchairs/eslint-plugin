@@ -50,7 +50,7 @@ ruleTester.run('import-order', rule, {
         import { Thing } from '@org/thing';
         import { Mine } from '@lib/mine/thing';
       `,
-    }
+    },
   ],
   invalid: [
     {
@@ -117,5 +117,5 @@ ruleTester.run('import-order', rule, {
         },
       ],
     },
-  ]
+  ],
 })

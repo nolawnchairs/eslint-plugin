@@ -1,3 +1,5 @@
+const { default: rules } = require('./lib/configs/common')
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -10,7 +12,18 @@ module.exports = {
     jest: true,
   },
   plugins: [
-    '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint',
+    'import',
+    'unused-imports',
   ],
-  // TODO: Add rules, including this one once it's in a plugin
+  rules,
+  overrides: [
+    {
+      files: ['src/**/*.ts'],
+      rules: {
+        // Do as I say, not as I do
+        'import/no-default-export': 'off',
+      },
+    },
+  ],
 }

@@ -3,7 +3,7 @@ import {
   resolve,
   dirname,
   isAbsolute,
-  normalize
+  normalize,
 } from 'path'
 import { Rule } from 'eslint'
 

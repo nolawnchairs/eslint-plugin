@@ -22,7 +22,6 @@ export type Options = {
   internalModulePattern?: string
 }
 
-
 const rule: Rule.RuleModule = {
   meta: {
     type: 'problem',
@@ -75,10 +74,9 @@ const rule: Rule.RuleModule = {
       ['Program:exit']() {
         generateReport(importMap, options)
           .forEach((descriptor) => context.report(descriptor))
-      }
+      },
     }
-  }
+  },
 }
 
 export default rule
-

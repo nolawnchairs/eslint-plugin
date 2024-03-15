@@ -4,7 +4,7 @@ import plugins from '../plugins'
 export const application = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins,
   rules: {

@@ -120,7 +120,7 @@ export function generateReport(declared: ImportMap, options: Options): Rule.Repo
           fixer.replaceTextRange(
             declared.range,
             idealOrder[declared.rank]!.code
-          )
+          ),
       })
     }
   }
@@ -146,7 +146,7 @@ export function findIdealRank(declared: Import, idealList: Import[]) {
     match: idealList[match]!,
     message: match === 0
       ? `Import for "${declared.moduleName}" must be first (0)`
-      : `Import for "${declared.moduleName}" must be after "${idealList[match - 1]!.moduleName}" (${match})`
+      : `Import for "${declared.moduleName}" must be after "${idealList[match - 1]!.moduleName}" (${match})`,
   }
 }
 
@@ -211,7 +211,7 @@ export function detectImportStrategy(imp: Import): ImportStrategy {
     return 'default'
   }
   // import { a } from 'a'
-  if (imp.node.specifiers.every(s => s.type === 'ImportSpecifier')) {
+  if (imp.node.specifiers.every((s) => s.type === 'ImportSpecifier')) {
     return 'named'
   }
   // import * as a from 'a'

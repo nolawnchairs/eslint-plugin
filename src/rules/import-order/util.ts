@@ -98,7 +98,7 @@ export function isIndexModule(moduleName: string) {
     './index.mjs',
     './index.jsx',
     './index.ts',
-    './index.tsx'
+    './index.tsx',
   ].indexOf(moduleName) > -1
 }
 
