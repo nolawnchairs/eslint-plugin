@@ -15,16 +15,16 @@ describe('Utility Functions', () => {
 
   it('should identify user-declared scoped modules', () => {
     const options = { internalAliasPattern: '@app/**/*' }
-    expect(isDeclaredInternalAliasedModule('@app/mymodule', options)).toBe(true)
-    expect(isDeclaredInternalAliasedModule('@app/mymodule/submodule', options)).toBe(true)
+    expect(isDeclaredInternalAliasedModule('@app/my-module', options)).toBe(true)
+    expect(isDeclaredInternalAliasedModule('@app/my-module/submodule', options)).toBe(true)
     expect(isDeclaredInternalAliasedModule('@nestjs/common', options)).toBe(false)
     expect(isDeclaredInternalAliasedModule('axios', options)).toBe(false)
   })
 
   it('should identify user-declared internal modules', () => {
     const options = { internalModulePattern: 'src/**/*' }
-    expect(isDeclaredInternalModule('src/mymodule', options)).toBe(true)
-    expect(isDeclaredInternalModule('src/mymodule/submodule', options)).toBe(true)
+    expect(isDeclaredInternalModule('src/my-module', options)).toBe(true)
+    expect(isDeclaredInternalModule('src/my-module/submodule', options)).toBe(true)
     expect(isDeclaredInternalModule('src/nestjs/common', options)).toBe(true)
     expect(isDeclaredInternalModule('axios', options)).toBe(false)
     expect(isDeclaredInternalModule('fs', options)).toBe(false)
@@ -33,8 +33,8 @@ describe('Utility Functions', () => {
 
   it('should identify external scoped modules', () => {
     const options = { internalAliasPattern: '@app/**/*' }
-    expect(isScopedModule('@app/mymodule', options)).toBe(false)
-    expect(isScopedModule('@app/mymodule/submodule', options)).toBe(false)
+    expect(isScopedModule('@app/my-module', options)).toBe(false)
+    expect(isScopedModule('@app/my-module/submodule', options)).toBe(false)
     expect(isScopedModule('@nestjs/common', options)).toBe(true)
     expect(isScopedModule('@nestjs/common/lib/injectable', options)).toBe(true)
     expect(isScopedModule('axios', options)).toBe(false)
@@ -51,28 +51,28 @@ describe('Utility Functions', () => {
   })
 
   it('should identify any internal module', () => {
-    expect(isInternalRelativeModule('./mymodule')).toBe(true)
-    expect(isInternalRelativeModule('./mymodule/submodule')).toBe(true)
-    expect(isInternalRelativeModule('../mymodule')).toBe(true)
-    expect(isInternalRelativeModule('../mymodule/submodule')).toBe(true)
-    expect(isInternalRelativeModule('../../../../mymodule/submodule')).toBe(true)
-    expect(isInternalRelativeModule('mymodule')).toBe(false)
+    expect(isInternalRelativeModule('./my-module')).toBe(true)
+    expect(isInternalRelativeModule('./my-module/submodule')).toBe(true)
+    expect(isInternalRelativeModule('../my-module')).toBe(true)
+    expect(isInternalRelativeModule('../my-module/submodule')).toBe(true)
+    expect(isInternalRelativeModule('../../../../my-module/submodule')).toBe(true)
+    expect(isInternalRelativeModule('my-module')).toBe(false)
   })
 
   it('should identify a sibling module', () => {
-    expect(isSiblingModule('./mymodule')).toBe(true)
-    expect(isSiblingModule('./mymodule/submodule')).toBe(true)
-    expect(isSiblingModule('../mymodule')).toBe(false)
-    expect(isSiblingModule('../../mymodule')).toBe(false)
-    expect(isSiblingModule('mymodule')).toBe(false)
+    expect(isSiblingModule('./my-module')).toBe(true)
+    expect(isSiblingModule('./my-module/submodule')).toBe(true)
+    expect(isSiblingModule('../my-module')).toBe(false)
+    expect(isSiblingModule('../../my-module')).toBe(false)
+    expect(isSiblingModule('my-module')).toBe(false)
   })
 
   it('should identify a parent module', () => {
     expect(isParentModule('..')).toBe(true)
     expect(isParentModule('../..')).toBe(true)
     expect(isParentModule('../../..')).toBe(true)
-    expect(isParentModule('./mymodule')).toBe(false)
-    expect(isParentModule('mymodule')).toBe(false)
+    expect(isParentModule('./my-module')).toBe(false)
+    expect(isParentModule('my-module')).toBe(false)
   })
 
   it('should identify an index module', () => {
@@ -85,7 +85,7 @@ describe('Utility Functions', () => {
     expect(isIndexModule('./index.mjs')).toBe(true)
     expect(isIndexModule('./index.ts')).toBe(true)
     expect(isIndexModule('./index.tsx')).toBe(true)
-    expect(isIndexModule('mymodule')).toBe(false)
+    expect(isIndexModule('my-module')).toBe(false)
   })
 
   it('should derive the correct import type', () => {
@@ -99,13 +99,13 @@ describe('Utility Functions', () => {
     expect(deriveType('axios/lib/submodule', options)).toBe('external')
     expect(deriveType('@nestjs/common', options)).toBe('scoped')
     expect(deriveType('@nestjs/common/lib/injectable', options)).toBe('scoped')
-    expect(deriveType('src/mymodule', options)).toBe('internal')
-    expect(deriveType('src/mymodule/submodule', options)).toBe('internal')
-    expect(deriveType('@app/mymodule', options)).toBe('aliased')
-    expect(deriveType('@app/mymodule/submodule', options)).toBe('aliased')
-    expect(deriveType('./mymodule', options)).toBe('sibling')
-    expect(deriveType('../mymodule', options)).toBe('parent')
-    expect(deriveType('../../mymodule', options)).toBe('parent')
+    expect(deriveType('src/my-module', options)).toBe('internal')
+    expect(deriveType('src/my-module/submodule', options)).toBe('internal')
+    expect(deriveType('@app/my-module', options)).toBe('aliased')
+    expect(deriveType('@app/my-module/submodule', options)).toBe('aliased')
+    expect(deriveType('./my-module', options)).toBe('sibling')
+    expect(deriveType('../my-module', options)).toBe('parent')
+    expect(deriveType('../../my-module', options)).toBe('parent')
     expect(deriveType('./', options)).toBe('index')
     expect(deriveType('.', options)).toBe('index')
   })
