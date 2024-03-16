@@ -92,6 +92,7 @@ export default {
   'import/no-unassigned-import': ['error', {
     allow: [
       'dotenv/config',
+      'reflect-metadata',
       'polyfills',
       '**/*-polyfill',
       '**/*-shim',
