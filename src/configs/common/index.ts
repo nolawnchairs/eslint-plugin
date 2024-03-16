@@ -56,9 +56,15 @@ export default {
       ],
     },
   ],
-  '@typescript-eslint/no-mixed-enums': 'error',
   '@typescript-eslint/no-base-to-string': 'error',
   '@typescript-eslint/no-loop-func': 'error',
+  '@typescript-eslint/no-mixed-enums': 'error',
+  '@typescript-eslint/no-require-imports': ['error', {
+    allow: [
+      '/package\\.json$',
+      '\.c?js$',
+    ],
+  }],
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
   '@typescript-eslint/no-unused-vars': 'off', // Turn off in favor of unused-imports
   '@typescript-eslint/return-await': 'error',
