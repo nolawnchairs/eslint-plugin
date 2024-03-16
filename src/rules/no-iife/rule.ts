@@ -22,7 +22,7 @@ const noIife: Rule.RuleModule = {
     const code = context.sourceCode
     return {
       CallExpression(node) {
-        const precededBySemiColon = code.getTokenBefore(node)?.value === ';'
+        const precededBySemi = code.getTokenBefore(node)?.value === ';'
         if (node.callee.type === 'FunctionExpression') {
           const isAsync = node.callee.async
           const functionBody = code.getText(node.callee.body)
@@ -32,7 +32,7 @@ const noIife: Rule.RuleModule = {
             messageId: 'forbidden',
             fix(fixer) {
               return [
-                fixer.removeRange([node.range![0] - (precededBySemiColon ? 1 : 0), node.range![0]]),
+                fixer.removeRange([node.range![0] - (precededBySemi ? 1 : 0), node.range![0]]),
                 fixer.insertTextBefore(node, `${isAsync ? 'async ' : ''}function ${functionName}() `),
                 fixer.insertTextAfter(node, `\n\n${functionName}()`),
                 fixer.replaceText(node, functionBody),
