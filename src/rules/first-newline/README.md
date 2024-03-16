@@ -49,4 +49,4 @@ Or with a string directive such as `"use strict"`:
 console.log('Hello, Newman')
 ```
 
-This rule accounts for these cases and will **always** require a newline after the first line, regardless of the configuration.
+This rule accounts for these cases and will forbid a beginning newline and will **always** require a newline after the first line, regardless of the configuration.
