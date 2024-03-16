@@ -1,5 +1,6 @@
 
 import { AST, Rule } from 'eslint'
+import { docUrl } from '../util'
 
 type Options = 'always' | 'never'
 
@@ -33,7 +34,7 @@ const firstNewline: Rule.RuleModule = {
     docs: {
       category: 'Stylistic Issues',
       description: 'Enforce each file starts with a single newline',
-      url: 'https://github.com/nolawnchairs/eslint-plugin/blob/master/src/rules/first-newline/README.md',
+      url: docUrl('first-newline'),
     },
     messages: {
       'newline-required': 'File must start with a single newline',

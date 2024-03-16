@@ -1,4 +1,5 @@
 import { Rule } from 'eslint'
+import { docUrl } from '../util'
 import {
   type ImportMap,
   generateReport,
@@ -29,7 +30,7 @@ const rule: Rule.RuleModule = {
     docs: {
       category: 'Style guide',
       description: 'Enforce a convention in module import order',
-      url: 'https://github.com/nolawnchairs/eslint-plugin/blob/master/src/rules/import-order/README.md',
+      url: docUrl('import-order'),
     },
     schema: [
       {

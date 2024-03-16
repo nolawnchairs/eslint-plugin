@@ -5,6 +5,7 @@ import {
   normalize,
 } from 'path'
 import { Rule } from 'eslint'
+import { docUrl } from '../util'
 
 type Options = {
   alias?: Record<string, string>
@@ -79,7 +80,7 @@ const rule: Rule.RuleModule = {
     docs: {
       category: 'Style guide',
       description: 'Enforce aliased imports instead of relative imports for application code',
-      url: 'https://github.com/nolawnchairs/eslint-plugin/blob/master/src/rules/prefer-aliased/README.md',
+      url: docUrl('prefer-aliased'),
     },
     schema: [
       {
