@@ -45,6 +45,10 @@ const rule: Rule.RuleModule = {
         },
       },
     ],
+    messages: {
+      mustOccurFirst: 'Import of "{{moduleName}}" must occur first at position 1/{{total}}',
+      mustOccurAfter: 'Import of "{{moduleName}}" must occur after "{{after}}" at position {{rank}}/{{total}}',
+    },
   },
   create(context) {
     const sourceCode = context.sourceCode

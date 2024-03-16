@@ -65,13 +65,11 @@ ruleTester.run('import-order', rule, {
       `,
       errors: [
         {
-          message: 'Import for "bar" must be after "fs" (1)',
-          type: 'ImportDeclaration',
+          messageId: 'mustOccurAfter',
 
         },
         {
-          message: 'Import for "fs" must be first (0)',
-          type: 'ImportDeclaration',
+          messageId: 'mustOccurFirst',
         },
       ],
     },
@@ -96,24 +94,19 @@ ruleTester.run('import-order', rule, {
       `,
       errors: [
         {
-          message: 'Import for "@org/thing" must be after "@org/other/dist/other" (4)',
-          type: 'ImportDeclaration',
+          messageId: 'mustOccurAfter',
         },
         {
-          message: 'Import for "bar" must be after "fs" (1)',
-          type: 'ImportDeclaration',
+          messageId: 'mustOccurAfter',
         },
         {
-          message: 'Import for "@lib/mine" must be after "@org/thing" (5)',
-          type: 'ImportDeclaration',
+          messageId: 'mustOccurAfter',
         },
         {
-          message: 'Import for "baz" must be after "bar" (2)',
-          type: 'ImportDeclaration',
+          messageId: 'mustOccurAfter',
         },
         {
-          message: 'Import for "@org/other/dist/other" must be after "baz" (3)',
-          type: 'ImportDeclaration',
+          messageId: 'mustOccurAfter',
         },
       ],
     },

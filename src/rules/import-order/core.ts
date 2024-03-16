@@ -107,15 +107,16 @@ export function groupImports(declaredImports: ImportMap, options: Options): Grou
  * @return {*}  {Rule.ReportDescriptor[]}
  */
 export function generateReport(declared: ImportMap, options: Options): Rule.ReportDescriptor[] {
-  const violations = Array<Rule.ReportDescriptor>()
+  const descriptors = Array<Rule.ReportDescriptor>()
   const declaredOrder = getMapValues(declared)
   const idealOrder = getMapValues(createIdealOrderMap(declared, options))
   for (const declared of declaredOrder.values()) {
-    const { match, message } = findIdealRank(declared, idealOrder)
+    const { match, messageId, data } = getReportContext(declared, idealOrder)
     if (match.rank !== declared.rank) {
-      violations.push({
+      descriptors.push({
         node: declared.node,
-        message,
+        messageId,
+        data,
         fix: (fixer: Rule.RuleFixer) =>
           fixer.replaceTextRange(
             declared.range,
@@ -124,29 +125,47 @@ export function generateReport(declared: ImportMap, options: Options): Rule.Repo
       })
     }
   }
-  return violations
+  return descriptors
 }
 
 /**
- * Find the ideal rank for a given import
+ * Compute the context for a given import's report
  *
  * @export
  * @param {Import} declared
  * @param {Import[]} idealList
  * @throws {Error} If the ideal list does not contain the declared module
  */
-export function findIdealRank(declared: Import, idealList: Import[]) {
-  const match = idealList.findIndex((imp) => imp.moduleName === declared.moduleName)
-  if (match === -1) {
+export function getReportContext(declared: Import, idealList: Import[]) {
+  const rank = idealList.findIndex((imp) => imp.moduleName === declared.moduleName)
+  if (rank === -1) {
     // This should never happen, because the ideal list is derived from the
     // declared list so it should always contain the declared module.
     throw new Error(`Ideal list does not contain "${declared.moduleName}"`)
   }
+
+  if (rank === 0) {
+    return {
+      match: idealList[rank]!,
+      messageId: 'mustOccurFirst',
+      data: {
+        moduleName: declared.moduleName,
+        total: idealList.length.toString(),
+        after: '',
+        rank: '0',
+      },
+    }
+  }
+
   return {
-    match: idealList[match]!,
-    message: match === 0
-      ? `Import for "${declared.moduleName}" must be first (0)`
-      : `Import for "${declared.moduleName}" must be after "${idealList[match - 1]!.moduleName}" (${match})`,
+    match: idealList[rank]!,
+    messageId: 'mustOccurAfter',
+    data: {
+      moduleName: declared.moduleName,
+      after: idealList[rank - 1]!.moduleName,
+      total: idealList.length.toString(),
+      rank: (rank + 1).toString(),
+    },
   }
 }
 
