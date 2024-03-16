@@ -74,7 +74,7 @@ foo()
 
 The rule takes the following configuration options:
 
-* `autoFixFunctionName` - The name of the function to use when auto-fixing an anonymous IIFE. The default is `autoFixedFn`, and should be refactored to a meaningfule name.
+* `autoFixFunctionName` - The name of the function to use when auto-fixing an anonymous IIFE. The default is `autoFixedFn`, and should be refactored to a meaningful name.
 
 ```js
 {
