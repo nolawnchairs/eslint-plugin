@@ -31,8 +31,9 @@ const firstNewline: Rule.RuleModule = {
     type: 'layout',
     fixable: 'whitespace',
     docs: {
+      category: 'Stylistic Issues',
       description: 'Enforce each file starts with a single newline',
-      recommended: true,
+      url: 'https://github.com/nolawnchairs/eslint-plugin/blob/master/src/rules/first-newline/README.md',
     },
     messages: {
       'newline-required': 'File must start with a single newline',

@@ -25,11 +25,12 @@ export type Options = {
 const rule: Rule.RuleModule = {
   meta: {
     type: 'problem',
+    fixable: 'code',
     docs: {
       category: 'Style guide',
       description: 'Enforce a convention in module import order',
+      url: 'https://github.com/nolawnchairs/eslint-plugin/blob/master/src/rules/import-order/README.md',
     },
-    fixable: 'code',
     schema: [
       {
         type: 'object',

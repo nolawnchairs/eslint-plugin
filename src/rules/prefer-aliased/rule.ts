@@ -77,8 +77,9 @@ const rule: Rule.RuleModule = {
     type: 'problem',
     fixable: 'code',
     docs: {
+      category: 'Style guide',
       description: 'Enforce aliased imports instead of relative imports for application code',
-      recommended: true,
+      url: 'https://github.com/nolawnchairs/eslint-plugin/blob/master/src/rules/prefer-aliased/README.md',
     },
     schema: [
       {
