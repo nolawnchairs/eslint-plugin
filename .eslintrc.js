@@ -1,3 +1,4 @@
+
 const { default: rules } = require('./lib/configs/common')
 
 module.exports = {
@@ -20,6 +21,7 @@ module.exports = {
   rules: {
     ...rules,
     'local/import-order': 'error',
+    'local/first-newline': 'error',
   },
   overrides: [
     {
@@ -27,6 +29,12 @@ module.exports = {
       rules: {
         // Do as I say, not as I do
         'import/no-default-export': 'off',
+      },
+    },
+    {
+      files: ['.*.js'],
+      rules: {
+        '@typescript-eslint/no-require-imports': 'off',
       },
     },
   ],

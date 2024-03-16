@@ -1,3 +1,4 @@
+
 import endent from 'endent'
 import { RuleTester } from 'eslint'
 import rule from '../../src/rules/import-order/rule'

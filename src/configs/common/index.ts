@@ -62,7 +62,6 @@ export default {
   '@typescript-eslint/no-require-imports': ['error', {
     allow: [
       '/package\\.json$',
-      '\.c?js$',
     ],
   }],
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',

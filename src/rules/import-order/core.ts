@@ -1,3 +1,4 @@
+
 import { AST, Rule } from 'eslint'
 import { ImportDeclaration } from 'estree'
 import { Options } from './rule'

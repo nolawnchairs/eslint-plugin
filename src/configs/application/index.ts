@@ -1,3 +1,4 @@
+
 import common from '../common'
 import plugins from '../plugins'
 
@@ -18,4 +19,13 @@ export const application = {
       },
     }],
   },
+  overrides: [
+    {
+      files: ['**/.*.cjs', '**/*.cjs'],
+      rules: {
+        '@typescript-eslint/no-require-imports': 'off',
+        'import/no-commonjs': 'off',
+      },
+    },
+  ],
 }
