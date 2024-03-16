@@ -6,6 +6,8 @@ type Options = {
   autoFixFunctionName?: string
 }
 
+const defaultFunctionName = 'autoFixedFn'
+
 const noIife: Rule.RuleModule = {
   meta: {
     type: 'problem',
@@ -24,7 +26,7 @@ const noIife: Rule.RuleModule = {
         properties: {
           autoFixFunctionName: {
             type: 'string',
-            default: 'autoFixedFn',
+            default: defaultFunctionName,
           },
         },
         additionalProperties: false,
@@ -33,7 +35,7 @@ const noIife: Rule.RuleModule = {
   },
   create(context) {
     const code = context.sourceCode
-    const { autoFixFunctionName = 'autoFixedFn' } = context.options[0] ?? {} as Options
+    const { autoFixFunctionName = defaultFunctionName } = context.options[0] ?? {} as Options
     return {
       CallExpression(node) {
         const precededBySemiColon = code.getTokenBefore(node)?.value === ';'
