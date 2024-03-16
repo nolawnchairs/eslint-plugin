@@ -22,6 +22,7 @@ module.exports = {
     ...rules,
     'local/import-order': 'error',
     'local/first-newline': 'error',
+    'local/no-iife': 'error',
   },
   overrides: [
     {
