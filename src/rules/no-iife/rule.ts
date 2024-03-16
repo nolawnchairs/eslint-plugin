@@ -2,11 +2,7 @@
 import { Rule } from 'eslint'
 import { docUrl } from '../util'
 
-type Options = {
-  autoFixFunctionName?: string
-}
-
-const defaultFunctionName = 'autoFixedFn'
+const autoFixFn = 'autoFixedFn'
 
 const noIife: Rule.RuleModule = {
   meta: {
@@ -20,29 +16,17 @@ const noIife: Rule.RuleModule = {
     messages: {
       forbidden: 'Immediately Invoked Function Expressions (IIFE\'s) are not allowed. Use a function declaration instead.',
     },
-    schema: [
-      {
-        type: 'object',
-        properties: {
-          autoFixFunctionName: {
-            type: 'string',
-            default: defaultFunctionName,
-          },
-        },
-        additionalProperties: false,
-      },
-    ],
+    schema: [],
   },
   create(context) {
     const code = context.sourceCode
-    const { autoFixFunctionName = defaultFunctionName } = context.options[0] ?? {} as Options
     return {
       CallExpression(node) {
         const precededBySemiColon = code.getTokenBefore(node)?.value === ';'
         if (node.callee.type === 'FunctionExpression') {
           const isAsync = node.callee.async
           const functionBody = code.getText(node.callee.body)
-          const functionName = node.callee.id?.name ?? autoFixFunctionName
+          const functionName = node.callee.id?.name ?? autoFixFn
           context.report({
             node,
             messageId: 'forbidden',
@@ -63,8 +47,8 @@ const noIife: Rule.RuleModule = {
             messageId: 'forbidden',
             fix(fixer) {
               return [
-                fixer.insertTextBefore(node, `${isAsync ? 'async ' : ''}function ${autoFixFunctionName}() `),
-                fixer.insertTextAfter(node, `\n\n${autoFixFunctionName}()`),
+                fixer.insertTextBefore(node, `${isAsync ? 'async ' : ''}function ${autoFixFn}() `),
+                fixer.insertTextAfter(node, `\n\n${autoFixFn}()`),
                 fixer.replaceText(node, functionBody),
               ]
             },

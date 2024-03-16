@@ -25,7 +25,12 @@ const x = 1
 
 ```
 
-This rule can be auto-fixed by converting the IIFE to a named function declaration and calling it immediately after.
+This rule can be auto-fixed by converting the IIFE to a named function declaration and calling it immediately after. Arrow functions and anonymous functions will be given the name `autoFixedFn`, otherwise the original function name will be retained.
+
+```ts
+(() => {
+  console.log('Hello, Newman')
+})()
 
 
 ### 👎 Invalid
@@ -72,37 +77,10 @@ foo()
 
 ## Config
 
-The rule takes the following configuration options:
-
-* `autoFixFunctionName` - The name of the function to use when auto-fixing an anonymous IIFE. The default is `autoFixedFn`, and should be refactored to a meaningful name.
+The rule takes no arguments.
 
 ```js
 {
-  '@nolawnchairs/no-iife': [
-    'error', 
-    {
-      autoFixFunctionName: 'bootstrap',
-    },
-  ] 
+  '@nolawnchairs/no-iife': 'error' 
 }
-```
-
-This will convert the following invalid code:
-
-```ts
-(async () => {
-  const x = await Promise.resolve('Hello, Newman')
-  console.log(x)
-})()
-```
-
-Into this:
-
-```ts
-async function bootstrap() {
-  const x = await Promise.resolve('Hello, Newman')
-  console.log(x)
-}
-
-bootstrap()
 ```
