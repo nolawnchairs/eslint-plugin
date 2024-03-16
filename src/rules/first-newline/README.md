@@ -25,7 +25,7 @@ The rule accepts one argument:
 
 ```ts
 {
-  'first-newline': [
+  '@nolawnchairs/first-newline': [
     'error', 
     'always',
   ] 

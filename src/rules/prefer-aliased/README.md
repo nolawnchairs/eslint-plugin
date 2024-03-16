@@ -26,7 +26,7 @@ We strongly recommend you only use a single alias token for your source root, as
 
 ```ts
 {
-  'prefer-aliased': [
+  '@nolawnchairs/prefer-aliased': [
     'error', 
     {
       alias: {

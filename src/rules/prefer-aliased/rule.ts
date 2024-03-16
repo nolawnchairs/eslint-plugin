@@ -74,7 +74,7 @@ export function findMatchingAlias(sourcePath: string, currentFile: string, optio
   }
 }
 
-const rule: Rule.RuleModule = {
+const preferAliased: Rule.RuleModule = {
   meta: {
     type: 'problem',
     fixable: 'code',
@@ -123,4 +123,4 @@ const rule: Rule.RuleModule = {
   },
 }
 
-export default rule
+export default preferAliased
