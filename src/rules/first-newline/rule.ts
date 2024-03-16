@@ -81,7 +81,7 @@ const firstNewline: Rule.RuleModule = {
               node,
               loc,
               messageId: 'newline-required',
-              fix: (fixer) => {
+              fix(fixer) {
                 return fixer.insertTextBeforeRange(range, '\n')
               },
             })
@@ -100,7 +100,7 @@ const firstNewline: Rule.RuleModule = {
             node,
             loc,
             messageId: 'newline-required',
-            fix: (fixer) => {
+            fix(fixer) {
               const range = [rangeStart, nlCount] satisfies AST.Range
               return fixer.replaceTextRange(range, '\n')
             },
@@ -111,7 +111,7 @@ const firstNewline: Rule.RuleModule = {
               node,
               loc,
               messageId: 'newline-forbidden',
-              fix: (fixer) => {
+              fix(fixer) {
                 const range = [rangeStart, nlCount] satisfies AST.Range
                 return fixer.replaceTextRange(range, '')
               },

@@ -109,7 +109,9 @@ const preferAliased: Rule.RuleModule = {
             context.report({
               node,
               message: `Use aliased import "${alias.path}" instead of relative "${declared}"`,
-              fix: (fixer) => fixer.replaceText(node.source, `'${alias.path}'`),
+              fix(fixer) {
+                return fixer.replaceText(node.source, `'${alias.path}'`)
+              },
             })
           } else {
             context.report({

@@ -54,7 +54,7 @@ const noImportGaps: Rule.RuleModule = {
                 },
               },
               messageId: 'forbidden',
-              fix: (fixer) => {
+              fix(fixer) {
                 return fixer.replaceTextRange([current.range[1], next.range[0]], '\n')
               },
             })
