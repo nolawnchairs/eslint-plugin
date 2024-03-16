@@ -13,7 +13,7 @@ const noImportGaps: Rule.RuleModule = {
     fixable: 'whitespace',
     docs: {
       category: 'Style guide',
-      description: 'Enforce no newline gaps between import statements',
+      description: 'Enforces the absencse of newlines between import statements.',
       url: docUrl('no-import-gaps'),
     },
     messages: {

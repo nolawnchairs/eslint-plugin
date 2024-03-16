@@ -1,7 +1,7 @@
 
 # @nolawnchairs/no-import-gaps
 
-This rule enforces having no newlines between import statements.
+This rule enforces the absencse of newlines between import statements.
 
 ### 👎 Invalid
 ```ts

@@ -43,4 +43,5 @@ module.exports = {
 * [import-order](./src/rules/import-order/README.md) - Enforces a standardized, opinionated order for import statements.
 * [prefer-aliased](./src/rules/prefer-aliased/README.md) - Enforce internal application imports to be aliased with a token instead of relative paths. Only recommended for applications and not libraries.
 * [first-newline](./src/rules/first-newline/README.md) - Enforces having exactly one newline at the beginning of a file before the first import.
+* [no-import-gaps](./src/rules/no-import-gaps/README.md) - Enforces the absence of newlines between import statements.
 
