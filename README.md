@@ -47,3 +47,32 @@ module.exports = {
 | [`@nolawnchairs/no-iife`](./src/rules/no-iife/README.md) | Disallows immediately invoked function expressions (IIFE). |
 | [`@nolawnchairs/no-import-gaps`](./src/rules/no-import-gaps/README.md) | Enforces the absence of newlines between import statements. |
 | [`@nolawnchairs/prefer-aliased`](./src/rules/prefer-aliased/README.md) | Enforce internal application imports to be aliased with a token instead of relative paths. Only recommended for applications and not libraries. |
+
+## Formatting
+
+Prettier is terrible, and has untenable defaults, so we rely on VSCode's language settings and ESLint to share formatting responsibilities.
+
+To enable the VSCode default formatter for JS, TS and React code, ensure the following VSCode settings:
+
+```json
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+```
+
+> The `detectIndentation` setting is disabled because when enabled, the indentation is set based on the file contents.

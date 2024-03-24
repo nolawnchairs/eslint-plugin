@@ -1,5 +1,12 @@
 
 export default {
+
+  // Ours
+  '@nolawnchairs/empty-brackets': 'error',
+  '@nolawnchairs/first-newline': 'error',
+  '@nolawnchairs/no-import-gaps': 'error',
+  '@nolawnchairs/no-iife': 'error',
+
   // ESLint
   'arrow-parens': 'error',
   'eol-last': 'error',
@@ -28,6 +35,7 @@ export default {
   'quote-props': ['error', 'consistent-as-needed'],
   'semi': ['error', 'never'],
   'spaced-comment': ['warn', 'always'],
+  'space-in-parens': ['error', 'never'],
 
   // Typescript ESLint
   '@typescript-eslint/await-thenable': 'error',
