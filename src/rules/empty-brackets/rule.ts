@@ -29,14 +29,17 @@ const defaultOptions: Options = {
  * @param token2 The second token
  */
 function getWhitespaceScore(token1: AST.Token, token2: AST.Token): WhitespaceScore {
-  if (token1 && token2) {
-    const diff = token2.range[0] - token1.range[1]
-    const newlines = token2.loc.start.line - token1.loc.end.line
-    return [diff, newlines]
-  }
-  return [0, 0]
+  const diff = token2.range[0] - token1.range[1]
+  const newlines = token2.loc.start.line - token1.loc.end.line
+  return [diff, newlines]
 }
 
+/**
+ * Get the report descriptor for the given context
+ *
+ * @param {ReportContext} context
+ * @return {*}  {(Rule.ReportDescriptor | undefined)}
+ */
 function getReportDescriptor(context: ReportContext): Rule.ReportDescriptor | undefined {
   const { node, type, isEnabled, firstToken, lastToken } = context
   const [whitespace, newlines] = getWhitespaceScore(firstToken, lastToken)
