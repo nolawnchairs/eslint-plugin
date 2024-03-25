@@ -15,6 +15,8 @@ type ReportContext = {
   lastToken: AST.Token
 }
 
+type WhitespaceScore = [whitespace: number, newlines: number]
+
 const defaultOptions: Options = {
   array: false,
   object: true,
@@ -26,24 +28,20 @@ const defaultOptions: Options = {
  * @param token1 The first token
  * @param token2 The second token
  */
-function getWhitespaceScore(token1: AST.Token, token2: AST.Token) {
+function getWhitespaceScore(token1: AST.Token, token2: AST.Token): WhitespaceScore {
   if (token1 && token2) {
     const diff = token2.range[0] - token1.range[1]
-    // edge case for newline where range is 0, but the tokens are on different lines
-    // which is not allowed, so we consider it as 2 whitespaces
-    if (diff === 1 && token1.loc.end.line !== token2.loc.start.line) {
-      return 2
-    }
-    return diff
+    const newlines = token2.loc.start.line - token1.loc.end.line
+    return [diff, newlines]
   }
-  return 0
+  return [0, 0]
 }
 
 function getReportDescriptor(context: ReportContext): Rule.ReportDescriptor | undefined {
   const { node, type, isEnabled, firstToken, lastToken } = context
-  const whitespace = getWhitespaceScore(firstToken, lastToken)
+  const [whitespace, newlines] = getWhitespaceScore(firstToken, lastToken)
   if (isEnabled) {
-    if (whitespace === 0) {
+    if (whitespace + newlines === 0) {
       return {
         node,
         messageId: 'missing',
@@ -54,10 +52,11 @@ function getReportDescriptor(context: ReportContext): Rule.ReportDescriptor | un
           return fixer.insertTextAfter(firstToken, ' ')
         },
       }
-    } else if (whitespace > 1) {
+    }
+    if (whitespace > 1) {
       return {
         node,
-        messageId: 'excessive',
+        messageId: newlines ? 'newlines' : 'excessive',
         data: {
           type,
         },
@@ -67,10 +66,22 @@ function getReportDescriptor(context: ReportContext): Rule.ReportDescriptor | un
       }
     }
   } else {
-    if (whitespace > 0) {
+    if (whitespace > 0 && newlines === 0) {
       return {
         node,
         messageId: whitespace === 1 ? 'present' : 'excessive',
+        data: {
+          type,
+        },
+        fix(fixer) {
+          return fixer.removeRange([firstToken.range[1], lastToken.range[0]])
+        },
+      }
+    }
+    if (newlines > 0) {
+      return {
+        node,
+        messageId: 'newlines',
         data: {
           type,
         },
@@ -95,6 +106,7 @@ const emptyBrackets: Rule.RuleModule = {
       missing: 'Empty {{type}} literal should have a space',
       present: 'Empty {{type}} literal should not have a space',
       excessive: 'Excessive space between empty {{type}} literal',
+      newlines: 'Empty {{type}} literal should not have newlines',
     },
     schema: [
       {

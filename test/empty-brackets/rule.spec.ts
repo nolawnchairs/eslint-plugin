@@ -95,13 +95,13 @@ ruleTester.run('empty-brackets', rule, {
       options: [{ array: true }],
       errors: [
         {
-          messageId: 'excessive',
+          messageId: 'newlines',
           data: {
             type: 'array',
           },
         },
         {
-          messageId: 'excessive',
+          messageId: 'newlines',
           data: {
             type: 'array',
           },
@@ -234,13 +234,13 @@ ruleTester.run('empty-brackets', rule, {
       options: [{ object: false }],
       errors: [
         {
-          messageId: 'excessive',
+          messageId: 'newlines',
           data: {
             type: 'object',
           },
         },
         {
-          messageId: 'excessive',
+          messageId: 'newlines',
           data: {
             type: 'object',
           },
